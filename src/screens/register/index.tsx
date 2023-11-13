@@ -1,11 +1,14 @@
 import { Background, Button, Input } from "../../components";
 import { ContentContainer, RegisterTitle, MainContainer } from "./styled";
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import { NativeStackNavigationHelpers } from "@react-navigation/native-stack/lib/typescript/src/types";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 import { useMutation } from "react-query";
 import { registerUser } from "../../services/api";
+import { storage } from "../../services/storage";
+import { AxiosResponse } from "axios";
+import { User } from "../../types/user";
 const registerImage = require("../../../assets/register.png");
 
 type Props = {
@@ -19,11 +22,12 @@ export const RegisterScreen = ({ navigation }: Props) => {
   });
 
   const { mutate, isLoading } = useMutation(registerUser, {
-    onError: (err) => {
-      console.log(err);
+    onError: () => {
+      Alert.alert("Usuário Já Existe");
     },
-    onSuccess({ data }) {
-      console.log(data);
+    onSuccess: async ({ data }: AxiosResponse<User>) => {
+      await storage.saveUser(data);
+      navigation.navigate("Home");
     },
   });
 
