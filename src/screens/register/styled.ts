@@ -15,7 +15,7 @@ export const ContentContainer = styled.View<{ theme: Theme }>`
   justify-content: space-between;
 `;
 
-export const LoginTitle = styled.Image<{ theme: Theme }>`
+export const RegisterTitle = styled.Image<{ theme: Theme }>`
   width: ${({ theme }) => theme.px(182)}px;
   height: ${({ theme }) => theme.px(51)}px;
 `;

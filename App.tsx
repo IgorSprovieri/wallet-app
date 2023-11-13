@@ -5,6 +5,8 @@ import { useFonts } from "expo-font";
 import { useCallback } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import { View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { Background, StatusBar } from "./src/components";
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -32,7 +34,12 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <View onLayout={onLayoutRootView}>
-        <Router />
+        <NavigationContainer>
+          <StatusBar />
+          <Background>
+            <Router />
+          </Background>
+        </NavigationContainer>
       </View>
     </ThemeProvider>
   );

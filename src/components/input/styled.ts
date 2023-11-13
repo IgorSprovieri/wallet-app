@@ -1,10 +1,11 @@
 import styled from "styled-components/native";
 import { Theme } from "../../theme";
 
-export const MainContainer = styled.View<{ theme: Theme }>`
+export const MainContainer = styled.View<{ theme: Theme; mt: number }>`
   width: auto;
   height: ${({ theme }) => theme.px(50)}px;
   justify-content: space-between;
+  margin-top: ${({ mt }) => mt}px;
 `;
 
 export const Text = styled.Text<{ theme: Theme }>`

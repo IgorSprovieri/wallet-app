@@ -4,11 +4,12 @@ type Props = {
   label: string;
   value: string;
   onChangeText: (text: string) => void;
+  mt?: number;
 };
 
-export const Input = ({ label, value, onChangeText }: Props) => {
+export const Input = ({ label, value, onChangeText, mt }: Props) => {
   return (
-    <MainContainer>
+    <MainContainer mt={mt || 0}>
       <Text>{label}</Text>
       <TextInput
         autoCapitalize="none"
