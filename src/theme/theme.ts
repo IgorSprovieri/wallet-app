@@ -6,6 +6,8 @@ export type Theme = {
   vh: Vh;
   bg: string;
   orange: string;
+  wave: string;
+  err: string;
 };
 
 export const theme: Theme = {
@@ -13,4 +15,6 @@ export const theme: Theme = {
   vh: vh,
   bg: "#001D41",
   orange: "#FFA245",
+  wave: "#003271",
+  err: "#F27474",
 };

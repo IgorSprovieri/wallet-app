@@ -7,6 +7,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Background, StatusBar } from "./src/components";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -31,15 +32,19 @@ export default function App() {
     return null;
   }
 
+  const queryClient = new QueryClient();
+
   return (
     <ThemeProvider theme={theme}>
       <View onLayout={onLayoutRootView}>
-        <NavigationContainer>
-          <StatusBar />
-          <Background>
-            <Router />
-          </Background>
-        </NavigationContainer>
+        <QueryClientProvider client={queryClient}>
+          <NavigationContainer>
+            <StatusBar />
+            <Background>
+              <Router />
+            </Background>
+          </NavigationContainer>
+        </QueryClientProvider>
       </View>
     </ThemeProvider>
   );
