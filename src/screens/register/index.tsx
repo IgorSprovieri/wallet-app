@@ -1,15 +1,14 @@
-import { Background, Button, Input } from "../../components";
-import { ContentContainer, RegisterTitle, MainContainer } from "./styled";
+import { Background, Button, Input, RegisterTitle } from "../../components";
+import { ContentContainer, MainContainer } from "./styled";
 import { Alert, View } from "react-native";
 import { NativeStackNavigationHelpers } from "@react-navigation/native-stack/lib/typescript/src/types";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 import { useMutation } from "react-query";
-import { registerUser } from "../../services/api";
-import { storage } from "../../services/storage";
+import { registerUser } from "../../libs/api";
+import { storage } from "../../libs/storage";
 import { AxiosResponse } from "axios";
 import { User } from "../../types/user";
-const registerImage = require("../../../assets/register.png");
 
 type Props = {
   navigation: NativeStackNavigationHelpers;
@@ -43,7 +42,7 @@ export const RegisterScreen = ({ navigation }: Props) => {
     <Background>
       <MainContainer>
         <ContentContainer>
-          <RegisterTitle source={registerImage} />
+          <RegisterTitle />
           <View>
             <Input
               value={values.name}

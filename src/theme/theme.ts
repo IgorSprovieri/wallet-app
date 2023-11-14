@@ -8,6 +8,7 @@ export type Theme = {
   orange: string;
   wave: string;
   err: string;
+  gray: string;
 };
 
 export const theme: Theme = {
@@ -17,4 +18,5 @@ export const theme: Theme = {
   orange: "#FFA245",
   wave: "#003271",
   err: "#F27474",
+  gray: "#B0B0B0",
 };

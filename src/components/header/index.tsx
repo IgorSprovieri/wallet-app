@@ -1,4 +1,5 @@
-import { MainContainer, ProfileImage, NameText, NotifyImage } from "./styled";
+import { NotifyImage, ProfileImage } from "../images";
+import { MainContainer, NameText } from "./styled";
 const profileImage = require("../../../assets/profile.png");
 const notifyImage = require("../../../assets/notify.png");
 

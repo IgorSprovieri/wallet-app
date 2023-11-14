@@ -1,16 +1,15 @@
-const loginImage = require("../../../assets/login.png");
 import { useEffect } from "react";
-import { Background, Button, Input } from "../../components";
-import { ContentContainer, LoginTitle, MainContainer } from "./styled";
+import { Background, Button, Input, LoginTitle } from "../../components";
+import { ContentContainer, MainContainer } from "./styled";
 import { NativeStackNavigationHelpers } from "@react-navigation/native-stack/lib/typescript/src/types";
 import { Alert, View } from "react-native";
 import { number, object, string } from "yup";
 import { useMutation } from "react-query";
 import { AxiosResponse } from "axios";
 import { User } from "../../types/user";
-import { storage } from "../../services/storage";
+import { storage } from "../../libs/storage";
 import { useFormik } from "formik";
-import { loginUser } from "../../services/api";
+import { loginUser } from "../../libs/api";
 
 type Props = {
   navigation: NativeStackNavigationHelpers;
@@ -63,7 +62,7 @@ export const LoginScreen = ({ navigation }: Props) => {
     <Background>
       <MainContainer>
         <ContentContainer>
-          <LoginTitle source={loginImage} />
+          <LoginTitle />
           <Input
             value={values.email}
             onChangeText={(value) => setFieldValue("email", value)}
@@ -71,7 +70,11 @@ export const LoginScreen = ({ navigation }: Props) => {
             err={errors.email}
           />
           <View>
-            <Button onPress={handleSubmit} variant="solid">
+            <Button
+              onPress={handleSubmit}
+              variant="solid"
+              isLoading={isLoading}
+            >
               Entrar
             </Button>
             <Button
