@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { Theme } from "../../theme";
 
-export const MainContainer = styled.View<{ theme: Theme }>`
+export const MainContainer = styled.TouchableOpacity<{ theme: Theme }>`
   width: 100%;
   height: ${({ theme }) => theme.px(34)}px;
   margin-bottom: ${({ theme }) => theme.px(16)}px;

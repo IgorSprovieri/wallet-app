@@ -1,11 +1,11 @@
-import { ImageSourcePropType, View } from "react-native";
+import { ImageSourcePropType } from "react-native";
 import {
-  Circle,
-  Image,
   LeftContainer,
   MainContainer,
   Money,
   Text,
+  Circle,
+  Image,
 } from "./styled";
 import { formatMoney } from "../../libs/currency";
 

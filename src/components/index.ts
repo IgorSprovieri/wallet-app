@@ -9,3 +9,5 @@ export * from "./menu";
 export * from "./dateInput";
 export * from "./resumeCard";
 export * from "./transferCard";
+export * from "./addCategory";
+export * from "./categoryCard";

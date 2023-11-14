@@ -8,6 +8,7 @@ import {
 } from "./styled";
 import { MainContext } from "../../context";
 import { ResumeTab, TransfersTab } from "../tabs";
+import { CategoriesTab } from "../tabs/categories";
 
 const Tab = () => {
   const { tab } = useContext(MainContext);
@@ -15,7 +16,7 @@ const Tab = () => {
   const tabs = {
     Resume: <ResumeTab />,
     Transfers: <TransfersTab />,
-    Categories: <></>,
+    Categories: <CategoriesTab />,
   };
 
   return tabs[tab];
