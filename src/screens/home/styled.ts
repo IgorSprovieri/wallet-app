@@ -22,6 +22,7 @@ export const HeaderContainer = styled.View<{ theme: Theme }>`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: ${({ theme }) => theme.px(20)}px;
 `;
 
 export const Title = styled.Text<{ theme: Theme }>`

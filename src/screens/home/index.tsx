@@ -7,13 +7,13 @@ import {
   Title,
 } from "./styled";
 import { MainContext } from "../../context";
-import { View } from "react-native";
+import { ResumeTab } from "../tabs";
 
 const Tab = () => {
   const { tab } = useContext(MainContext);
 
   const tabs = {
-    Resume: <></>,
+    Resume: <ResumeTab />,
     Transfers: <></>,
     Categories: <></>,
   };
@@ -22,15 +22,23 @@ const Tab = () => {
 };
 
 export const HomeScreen = () => {
+  const { tab, setTab } = useContext(MainContext);
+
+  const titles = {
+    Resume: "Resumo Mensal",
+    Transfers: "Transações",
+    Categories: "Categorias",
+  };
+
   return (
     <Background>
       <MainContainer>
         <Header name="Igor Sprovieri" />
         <Balance value={2226.73} />
-        <Menu />
+        <Menu setTab={setTab} />
         <ContentContainer>
           <HeaderContainer>
-            <Title>Resumo Mensal</Title>
+            <Title>{titles[tab]}</Title>
             <DateInput date={new Date()} />
           </HeaderContainer>
           <Tab />
