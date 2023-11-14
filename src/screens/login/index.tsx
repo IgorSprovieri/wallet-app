@@ -1,5 +1,5 @@
 const loginImage = require("../../../assets/login.png");
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Background, Button, Input } from "../../components";
 import { ContentContainer, LoginTitle, MainContainer } from "./styled";
 import { NativeStackNavigationHelpers } from "@react-navigation/native-stack/lib/typescript/src/types";

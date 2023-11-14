@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import { theme } from "./src/theme";
+import { Theme, theme } from "./src/theme";
 import { Router } from "./src";
 import { useFonts } from "expo-font";
 import { useCallback } from "react";
@@ -8,6 +8,7 @@ import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { Background, StatusBar } from "./src/components";
 import { QueryClient, QueryClientProvider } from "react-query";
+import styled from "styled-components/native";
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -40,12 +41,17 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <NavigationContainer>
             <StatusBar />
-            <Background>
+            <MainContainer>
               <Router />
-            </Background>
+            </MainContainer>
           </NavigationContainer>
         </QueryClientProvider>
       </View>
     </ThemeProvider>
   );
 }
+
+export const MainContainer = styled.View<{ theme: Theme }>`
+  width: 100%;
+  height: ${({ theme }) => theme.vh}px;
+`;

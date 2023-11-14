@@ -1,11 +1,7 @@
-import { LoginScreen, RegisterScreen } from "./screens";
+import { LoginScreen, RegisterScreen, HomeScreen } from "./screens";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
-
-const FakeHome = () => {
-  return <></>;
-};
 
 export const Router = () => {
   return (
@@ -15,7 +11,7 @@ export const Router = () => {
     >
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen name="Home" component={FakeHome} />
+      <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
   );
 };
