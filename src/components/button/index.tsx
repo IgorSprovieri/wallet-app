@@ -8,13 +8,15 @@ type Props = {
   onPress: () => any;
   mt?: number;
   isLoading?: boolean;
+  h?: number;
+  w?: number;
 };
 
 export const Button = (props: Props) => {
-  const { children, variant, onPress, mt, isLoading } = props;
+  const { children, variant, onPress, mt, isLoading, h, w } = props;
 
   return (
-    <TouchableOpacity mt={mt || 0} onPress={onPress} variant={variant}>
+    <TouchableOpacity mt={mt} h={h} w={w} onPress={onPress} variant={variant}>
       {isLoading === true ? (
         <ActivityIndicator />
       ) : (

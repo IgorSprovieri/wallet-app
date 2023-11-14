@@ -1,6 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import { Theme, theme } from "./src/theme";
-import { Router } from "./src";
+import { Provider } from "./src";
 import { useFonts } from "expo-font";
 import { useCallback } from "react";
 import * as SplashScreen from "expo-splash-screen";
@@ -42,7 +42,7 @@ export default function App() {
           <NavigationContainer>
             <StatusBar />
             <MainContainer>
-              <Router />
+              <Provider />
             </MainContainer>
           </NavigationContainer>
         </QueryClientProvider>

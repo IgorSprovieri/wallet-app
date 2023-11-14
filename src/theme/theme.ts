@@ -9,6 +9,8 @@ export type Theme = {
   wave: string;
   err: string;
   gray: string;
+  white: string;
+  blue: string;
 };
 
 export const theme: Theme = {
@@ -19,4 +21,6 @@ export const theme: Theme = {
   wave: "#003271",
   err: "#F27474",
   gray: "#B0B0B0",
+  white: "#FFFFFF",
+  blue: "#4F7DEA",
 };

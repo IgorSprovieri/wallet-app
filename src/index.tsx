@@ -1,17 +1,14 @@
-import { LoginScreen, RegisterScreen, HomeScreen } from "./screens";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useState } from "react";
+import { MainContext } from "./context";
+import { Router } from "./router";
+import { Tabs } from "./types";
 
-const Stack = createNativeStackNavigator();
+export const Provider = () => {
+  const [tab, setTab] = useState<Tabs>("Resume");
 
-export const Router = () => {
   return (
-    <Stack.Navigator
-      initialRouteName="Login"
-      screenOptions={{ headerShown: false }}
-    >
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen name="Home" component={HomeScreen} />
-    </Stack.Navigator>
+    <MainContext.Provider value={{ tab, setTab }}>
+      <Router />
+    </MainContext.Provider>
   );
 };
