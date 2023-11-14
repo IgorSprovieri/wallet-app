@@ -1,6 +1,5 @@
 import { ResumeCard, TransferCard } from "../../../components";
 import { MainContainer } from "./styled";
-const icons = require("../../../libs/icons/index.json");
 
 export const TransfersTab = () => {
   const a = require(`../../../../${"assets/icons/academic-cap-svgrepo-com.png"}`);

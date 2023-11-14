@@ -1,21 +1,35 @@
 import { AddCategory, CategoryCard } from "../../../components";
 import { CategoryAddCard, MainContainer, CategoryAddCardText } from "./styled";
-const icons = require("../../../libs/icons/index.json");
+import { icons } from "../../../libs/icons";
+import { useContext } from "react";
+import { MainContext } from "../../../context";
 
 export const CategoriesTab = () => {
-  const a = require(`../../../../${"assets/icons/academic-cap-svgrepo-com.png"}`);
+  const { categories } = useContext(MainContext);
 
   return (
     <>
-      <AddCategory source={a} />
+      <AddCategory source={icons["more-horizontal"]} />
       <MainContainer>
         <CategoryAddCard>
           <CategoryAddCardText>+</CategoryAddCardText>
         </CategoryAddCard>
-        <CategoryCard source={a} />
-        <CategoryCard source={a} />
-        <CategoryCard source={a} />
-        <CategoryCard source={a} />
+        {categories.map((category) => {
+          const { color, icon_url, name } = category;
+
+          const source = icons[icon_url]
+            ? icons[icon_url]
+            : icons["more-horizontal"];
+
+          return (
+            <CategoryCard
+              key={name}
+              name={name}
+              source={source}
+              color={color}
+            />
+          );
+        })}
       </MainContainer>
     </>
   );
