@@ -7,14 +7,14 @@ import {
   Title,
 } from "./styled";
 import { MainContext } from "../../context";
-import { ResumeTab } from "../tabs";
+import { ResumeTab, TransfersTab } from "../tabs";
 
 const Tab = () => {
   const { tab } = useContext(MainContext);
 
   const tabs = {
     Resume: <ResumeTab />,
-    Transfers: <></>,
+    Transfers: <TransfersTab />,
     Categories: <></>,
   };
 

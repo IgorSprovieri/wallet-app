@@ -3,7 +3,6 @@ import { MainContainer } from "./styled";
 const icons = require("../../../libs/icons/index.json");
 
 export const ResumeTab = () => {
-  console.log(icons[0]);
   const a = require(`../../../../${"assets/icons/academic-cap-svgrepo-com.png"}`);
 
   return (

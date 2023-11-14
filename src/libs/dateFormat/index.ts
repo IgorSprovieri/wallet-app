@@ -19,3 +19,15 @@ export const dateFormat = (date: Date) => {
 
   return `${str[month]}/${year}`;
 };
+
+export const fullDateFormat = (date: Date) => {
+  const formattedDate: string = dateFormat(date);
+  const day: number = date.getDate();
+  let dayString: string = day.toString();
+
+  if (day < 10) {
+    dayString = "0" + dayString;
+  }
+
+  return `${dayString} ${formattedDate.replace("/", " ")}`;
+};

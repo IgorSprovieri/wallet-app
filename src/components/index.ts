@@ -8,3 +8,4 @@ export * from "./images";
 export * from "./menu";
 export * from "./dateInput";
 export * from "./resumeCard";
+export * from "./transferCard";
