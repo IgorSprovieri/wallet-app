@@ -5,6 +5,10 @@ const loginImage = require("../../../assets/login.png");
 const registerImage = require("../../../assets/register.png");
 const profileImage = require("../../../assets/profile.png");
 const notifyImage = require("../../../assets/notify.png");
+const homeImage = require("../../../assets/home.png");
+const transferImage = require("../../../assets/transfer.png");
+const categoriesImage = require("../../../assets/categories.png");
+const addImage = require("../../../assets/add.png");
 
 type Attrs = {
   source?: ImageSourcePropType;
@@ -38,6 +42,26 @@ export const ProfileImage = Image(src(profileImage))<Props>`
 `;
 
 export const NotifyImage = Image(src(notifyImage))<Props>`
+  height: ${({ theme }) => theme.px(24)}px;
+  width: ${({ theme }) => theme.px(24)}px;
+`;
+
+export const HomeImage = Image(src(homeImage))<Props>`
+  height: ${({ theme }) => theme.px(24)}px;
+  width: ${({ theme }) => theme.px(24)}px;
+`;
+
+export const TransferImage = Image(src(transferImage))<Props>`
+  height: ${({ theme }) => theme.px(24)}px;
+  width: ${({ theme }) => theme.px(24)}px;
+`;
+
+export const CategoriesImage = Image(src(categoriesImage))<Props>`
+  height: ${({ theme }) => theme.px(24)}px;
+  width: ${({ theme }) => theme.px(24)}px;
+`;
+
+export const AddImage = Image(src(addImage))<Props>`
   height: ${({ theme }) => theme.px(24)}px;
   width: ${({ theme }) => theme.px(24)}px;
 `;
