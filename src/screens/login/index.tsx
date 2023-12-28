@@ -1,21 +1,16 @@
 import { useEffect } from "react";
-import { Background, Button, Input, LoginTitle } from "../../components";
-import { ContentContainer, MainContainer } from "./styled";
-import { NativeStackNavigationHelpers } from "@react-navigation/native-stack/lib/typescript/src/types";
-import { Alert, View } from "react-native";
+import { MainContainer } from "./styled";
 import { number, object, string } from "yup";
-import { useMutation } from "react-query";
-import { AxiosResponse } from "axios";
-import { User } from "../../types/user";
 import { storage } from "../../libs/storage";
-import { useFormik } from "formik";
-import { loginUser } from "../../libs/api";
+import { Background } from "../../components/atoms";
+import { LoginForm } from "../../components/organisms";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type Props = {
-  navigation: NativeStackNavigationHelpers;
+  navigation: NativeStackNavigationProp<any>;
 };
 
-export const LoginScreen = ({ navigation }: Props) => {
+export const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const onStart = async () => {
     try {
       const user = await storage.getUser();
@@ -36,56 +31,10 @@ export const LoginScreen = ({ navigation }: Props) => {
     onStart();
   }, []);
 
-  const schema = object({
-    email: string().email().required(),
-  });
-
-  const { mutate, isLoading } = useMutation(loginUser, {
-    onError: () => {
-      Alert.alert("Usuário Não Existe");
-    },
-    onSuccess: async ({ data }: AxiosResponse<User>) => {
-      await storage.saveUser(data);
-      navigation.navigate("Home");
-    },
-  });
-
-  const { values, setFieldValue, handleSubmit, errors } = useFormik({
-    initialValues: { email: "" },
-    validationSchema: schema,
-    onSubmit: (data) => {
-      mutate(data);
-    },
-  });
-
   return (
     <Background>
       <MainContainer>
-        <ContentContainer>
-          <LoginTitle />
-          <Input
-            value={values.email}
-            onChangeText={(value) => setFieldValue("email", value)}
-            label="Email"
-            err={errors.email}
-          />
-          <View>
-            <Button
-              onPress={handleSubmit}
-              variant="solid"
-              isLoading={isLoading}
-            >
-              Entrar
-            </Button>
-            <Button
-              mt={12}
-              onPress={() => navigation.navigate("Register")}
-              variant="ghost"
-            >
-              Criar Conta
-            </Button>
-          </View>
-        </ContentContainer>
+        <LoginForm navigation={navigation} />
       </MainContainer>
     </Background>
   );

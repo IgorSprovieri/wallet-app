@@ -1,4 +1,6 @@
-export const icons: { [key: string]: any } = {
+import { ImageURISource } from "react-native";
+
+export const icons: { [key: string]: ImageURISource } = {
   "academic-cap": require("../../../assets/icons/academic-cap-svgrepo-com.png"),
   aerial: require("../../../assets/icons/aerial-svgrepo-com.png"),
   airplane: require("../../../assets/icons/airplane-svgrepo-com.png"),

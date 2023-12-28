@@ -1,20 +1,6 @@
-import { Vh, vh } from "./vh";
-import { Px, px } from "./px";
-
-export type Theme = {
-  px: Px;
-  vh: Vh;
-  bg: string;
-  orange: string;
-  wave: string;
-  err: string;
-  red: string;
-  green: string;
-  gray: string;
-  white: string;
-  blue: string;
-  lightGray: string;
-};
+import { vh } from "./vh";
+import { px } from "./px";
+import type { Theme } from "../types";
 
 export const theme: Theme = {
   px: px,

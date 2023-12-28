@@ -1,57 +1,42 @@
-import { useContext, useEffect } from "react";
-import { Background, Balance, DateInput, Header, Menu } from "../../components";
+import { useState } from "react";
+import { Background, DateInput } from "../../components/atoms";
+import { Balance, Header, Menu } from "../../components/molecules";
 import {
   MainContainer,
   ContentContainer,
   HeaderContainer,
   Title,
 } from "./styled";
-import { MainContext } from "../../context";
-import { ResumeTab, TransfersTab } from "../tabs";
-import { CategoriesTab } from "../tabs/categories";
+import {
+  ResumeTab,
+  TransfersTab,
+  CategoriesTab,
+} from "../../components/templates";
 import { getCategories } from "../../libs/api";
-import { useMutation, useQuery } from "react-query";
-import { storage } from "../../libs/storage";
+import { useQuery } from "react-query";
+import { Tab } from "../../types";
 
-const Tab = () => {
-  const { tab } = useContext(MainContext);
-
-  const tabs = {
-    Resume: <ResumeTab />,
-    Transfers: <TransfersTab />,
-    Categories: <CategoriesTab />,
-  };
-
-  return tabs[tab];
+type Props = {
+  navigation: any;
 };
 
-export const HomeScreen = () => {
-  const { tab, setTab } = useContext(MainContext);
-  const { categories, setCategories } = useContext(MainContext);
+export const HomeScreen: React.FC<Props> = ({ navigation }) => {
+  const [tab, setTab] = useState<Tab>("Resume");
 
-  const { data, mutate, isSuccess } = useMutation((email: string) =>
-    getCategories(email)
-  );
-
-  const onStart = async () => {
-    const user = await storage.getUser();
-    mutate(user.email);
-  };
-
-  useEffect(() => {
-    onStart();
-  }, []);
-
-  useEffect(() => {
-    if (isSuccess === true) {
-      setCategories(data);
-    }
-  }, [isSuccess]);
+  const { data: categories } = useQuery(["categories"], getCategories, {
+    onError: () => navigation.navigate("Login"),
+  });
 
   const titles = {
     Resume: "Resumo Mensal",
     Transfers: "Transações",
     Categories: "Categorias",
+  };
+
+  const tabs = {
+    Resume: <ResumeTab />,
+    Transfers: <TransfersTab />,
+    Categories: <CategoriesTab categories={categories} />,
   };
 
   return (
@@ -65,7 +50,7 @@ export const HomeScreen = () => {
             <Title>{titles[tab]}</Title>
             <DateInput date={new Date()} />
           </HeaderContainer>
-          <Tab />
+          {tabs[tab]}
         </ContentContainer>
       </MainContainer>
     </Background>

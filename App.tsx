@@ -1,14 +1,15 @@
 import { ThemeProvider } from "styled-components";
-import { Theme, theme } from "./src/theme";
-import { Provider } from "./src";
+import { theme } from "./src/theme";
+import { Router } from "./src/index";
 import { useFonts } from "expo-font";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import { View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { Background, StatusBar } from "./src/components";
-import { QueryClient, QueryClientProvider } from "react-query";
 import styled from "styled-components/native";
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "./src/components/atoms";
+import { QueryClient, QueryClientProvider } from "react-query";
+import type { Theme } from "./src/types";
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -42,7 +43,7 @@ export default function App() {
           <NavigationContainer>
             <StatusBar />
             <MainContainer>
-              <Provider />
+              <Router />
             </MainContainer>
           </NavigationContainer>
         </QueryClientProvider>

@@ -2,9 +2,7 @@ import { Dimensions, PixelRatio } from "react-native";
 
 const figmaWidth = 320;
 
-export type Px = (valuePx: number) => number;
-
-const px: Px = (valuePx: number) => {
+const px = (valuePx: number) => {
   const widthPercent = (valuePx / figmaWidth) * 100;
   const screenWidth = Dimensions.get("window").width;
   return PixelRatio.roundToNearestPixel(
