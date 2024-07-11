@@ -1,19 +1,24 @@
-import { FlatList, View } from "react-native";
-import { icons } from "../../../libs/icons";
-import type { Category } from "../../../types";
-import { CategoryCard } from "../../molecules";
+import { FlatList } from "react-native";
+import { icons } from "../../../theme/icons";
+import { CategoryCard } from "@/components/molecules";
 import { ItemSeparator, MainContainer } from "./styled";
+import { useQuery } from "@tanstack/react-query";
+import { getCategories } from "@/services/api";
+import { CategoryEntity } from "@/services/api/types";
 
-type Props = {
-  categories: Array<Category>;
-};
+type RenderItem = { item: CategoryEntity; index: number };
 
-export const ListCategories: React.FC<Props> = ({ categories }) => {
+export const ListCategories: React.FC = () => {
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategories,
+  });
+
   return (
     <MainContainer>
       <FlatList
         data={categories}
-        renderItem={({ item, index }: { item: Category; index: number }) => {
+        renderItem={({ item, index }: RenderItem) => {
           const { color, icon_url, name } = item;
 
           const source = icons[icon_url]

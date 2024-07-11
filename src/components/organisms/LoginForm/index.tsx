@@ -2,13 +2,12 @@ import { Alert, View } from "react-native";
 import { Button, Input, LoginTitleImage } from "../../atoms";
 import { MainContainer } from "./styled";
 import { object, string } from "yup";
-import { useMutation } from "react-query";
-import { loginUser } from "../../../libs/api";
-import type { AxiosResponse } from "axios";
-import type { User } from "../../../types";
-import { storage } from "../../../libs/storage";
+import { useMutation } from "@tanstack/react-query";
+import { loginUser } from "../../../services/api";
+import { storage } from "../../../services/storage";
 import { useFormik } from "formik";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { UserEntity } from "@/services/api/types";
 
 type Props = {
   navigation: NativeStackNavigationProp<any>;
@@ -19,9 +18,12 @@ export const LoginForm: React.FC<Props> = ({ navigation }) => {
     email: string().email().required(),
   });
 
-  const { mutate, isLoading } = useMutation(loginUser, {
-    onError: () => Alert.alert("Usuário Não Existe"),
-    onSuccess: async ({ data }: AxiosResponse<User>) => {
+  const { mutate, isPending } = useMutation({
+    mutationFn: loginUser,
+    onError: (err) => {
+      Alert.alert("Usuário Não Existe");
+    },
+    onSuccess: async (data: UserEntity) => {
       await storage.saveUser(data);
       navigation.navigate("Home");
     },
@@ -43,7 +45,7 @@ export const LoginForm: React.FC<Props> = ({ navigation }) => {
         err={errors.email}
       />
       <View>
-        <Button onPress={handleSubmit} variant="solid" isLoading={isLoading}>
+        <Button onPress={handleSubmit} variant="solid" isLoading={isPending}>
           Entrar
         </Button>
         <Button

@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import type { Theme } from "../../../types";
+import type { Theme } from "@/theme/types";
 
 export const TouchableOpacity = styled.TouchableOpacity<{ theme: Theme }>`
   width: ${({ theme }) => theme.px(74)}px;

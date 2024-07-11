@@ -1,3 +1,3 @@
-export * from "./resumeTab";
-export * from "./transfersTab";
-export * from "./categoriesTab";
+export * from "./Home";
+export * from "./login";
+export * from "./register";

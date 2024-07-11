@@ -1,15 +1,18 @@
-import { ThemeProvider } from "styled-components";
-import { theme } from "./src/theme";
-import { Router } from "./src/index";
-import { useFonts } from "expo-font";
-import { useCallback, useRef } from "react";
 import * as SplashScreen from "expo-splash-screen";
+
+import { ThemeProvider } from "styled-components";
+import { theme } from "./src/theme/theme";
+import { Router } from "./src/router/index";
+import { useFonts } from "expo-font";
+import { useCallback } from "react";
 import { View } from "react-native";
 import styled from "styled-components/native";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "./src/components/atoms";
-import { QueryClient, QueryClientProvider } from "react-query";
-import type { Theme } from "./src/types";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import type { Theme } from "./src/theme/types";
+import { UserContextProvider } from "@/services/UserContext/Provider";
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -41,10 +44,12 @@ export default function App() {
       <View onLayout={onLayoutRootView}>
         <QueryClientProvider client={queryClient}>
           <NavigationContainer>
-            <StatusBar />
-            <MainContainer>
-              <Router />
-            </MainContainer>
+            <UserContextProvider>
+              <StatusBar />
+              <MainContainer>
+                <Router />
+              </MainContainer>
+            </UserContextProvider>
           </NavigationContainer>
         </QueryClientProvider>
       </View>

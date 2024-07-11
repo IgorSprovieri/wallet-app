@@ -1,4 +1,4 @@
-import { dateFormat } from "../../../libs/dateFormat";
+import { dateFormat } from "@/utils/dateFormat";
 import { Text, TouchableOpacity } from "./styled";
 
 type Props = {

@@ -11,8 +11,8 @@ import {
   LeftContentContainer,
   RightContainer,
 } from "./styled";
-import { formatMoney } from "../../../libs/currency";
-import { fullDateFormat } from "../../../libs/dateFormat";
+import { formatMoney } from "@/utils/currency";
+import { fullDateFormat } from "@/utils/dateFormat";
 
 type Props = {
   source: ImageSourcePropType;

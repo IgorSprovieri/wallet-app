@@ -7,7 +7,7 @@ import {
   Circle,
   Image,
 } from "./styled";
-import { formatMoney } from "../../../libs/currency";
+import { formatMoney } from "@/utils/currency";
 
 type Props = {
   source: ImageSourcePropType;

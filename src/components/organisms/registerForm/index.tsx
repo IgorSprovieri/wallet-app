@@ -2,13 +2,12 @@ import { MainContainer } from "./styled";
 import { Alert, View } from "react-native";
 import { useFormik } from "formik";
 import { object, string } from "yup";
-import { useMutation } from "react-query";
-import { AxiosResponse } from "axios";
-import { registerUser } from "../../../libs/api";
-import type { User } from "../../../types";
-import { storage } from "../../../libs/storage";
-import { Button, Input, RegisterTitleImage } from "../../atoms";
+import { useMutation } from "@tanstack/react-query";
+import { registerUser } from "@/services/api";
+import { storage } from "@/services/storage";
+import { Button, Input, RegisterTitleImage } from "@/components/atoms";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import type { UserEntity } from "@/services/api/types";
 
 type Props = {
   navigation: NativeStackNavigationProp<any>;
@@ -20,11 +19,10 @@ export const RegisterForm: React.FC<Props> = ({ navigation }) => {
     email: string().email().required(),
   });
 
-  const { mutate, isLoading } = useMutation(registerUser, {
-    onError: () => {
-      Alert.alert("Usuário Já Existe");
-    },
-    onSuccess: async ({ data }: AxiosResponse<User>) => {
+  const { mutate, isPending } = useMutation({
+    mutationFn: registerUser,
+    onError: () => Alert.alert("Usuário Já Existe"),
+    onSuccess: async (data: UserEntity) => {
       await storage.saveUser(data);
       navigation.navigate("Home");
     },
@@ -58,7 +56,7 @@ export const RegisterForm: React.FC<Props> = ({ navigation }) => {
       </View>
 
       <View>
-        <Button onPress={handleSubmit} variant="solid" isLoading={isLoading}>
+        <Button onPress={handleSubmit} variant="solid" isLoading={isPending}>
           Cadastrar
         </Button>
         <Button

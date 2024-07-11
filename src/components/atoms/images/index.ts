@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import type { Theme } from "../../../types";
+import type { Theme } from "@/theme/types";
 import type { ImageSourcePropType, ImageURISource } from "react-native";
 
 const loginImage: ImageURISource = require("../../../../assets/login.png");

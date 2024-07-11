@@ -1,6 +1,6 @@
 import { vh } from "./vh";
 import { px } from "./px";
-import type { Theme } from "../types";
+import type { Theme } from "./types";
 
 export const theme: Theme = {
   px: px,

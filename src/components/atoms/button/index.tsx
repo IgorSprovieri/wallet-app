@@ -17,7 +17,16 @@ export const Button: React.FC<Props> = (props) => {
   const { children, variant, onPress, mt, isLoading, h, w } = props;
 
   return (
-    <TouchableOpacity mt={mt} h={h} w={w} onPress={onPress} variant={variant}>
+    <TouchableOpacity
+      mt={mt}
+      h={h}
+      w={w}
+      onPress={() => {
+        console.log("clicked");
+        onPress();
+      }}
+      variant={variant}
+    >
       {isLoading === true ? (
         <ActivityIndicator />
       ) : (

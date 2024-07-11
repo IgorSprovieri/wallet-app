@@ -1,6 +1,6 @@
-import { Platform } from "react-native";
 import styled from "styled-components/native";
-import type { Theme } from "../../../types";
+import { Platform } from "react-native";
+import type { Theme } from "@/theme/types";
 
 export const MainContainer = styled.View<{ theme: Theme }>`
   width: 100%;
@@ -16,16 +16,6 @@ export const MainContainer = styled.View<{ theme: Theme }>`
   justify-content: space-between;
   padding: ${({ theme }) => theme.px(8)}px;
   margin-bottom: ${({ theme }) => theme.px(16)}px;
-`;
-
-export const Circle = styled.View<{ theme: Theme; color?: string | undefined }>`
-  width: ${({ theme }) => theme.px(34)}px;
-  height: ${({ theme }) => theme.px(34)}px;
-  border-radius: ${({ theme }) => theme.px(34)}px;
-  margin-right: ${({ theme }) => theme.px(8)}px;
-  background-color: ${({ theme, color }) => color || theme.lightGray};
-  align-items: center;
-  justify-content: center;
 `;
 
 export const Image = styled.Image<{ theme: Theme }>`
